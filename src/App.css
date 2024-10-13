@@ -1,3 +1,6 @@
+* {
+    font-family: monospace;
+}
 .mainDisplay {
     max-width: 800px;
     display: flex;
@@ -103,5 +106,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    text-transform: uppercase;
+}
+.word {
+    display: flex;
+    gap: 20px;
+    font-size: 100px;
+    font-weight: bold;
     text-transform: uppercase;
 }
