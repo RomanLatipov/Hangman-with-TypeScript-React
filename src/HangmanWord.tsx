@@ -5,6 +5,7 @@ type HangmanProps = {
 
 export default function HangmanWord({word, guessedLetters}: HangmanProps) {
     // return <div className="word"></div>
+    console.log(guessedLetters)
     return <div className="word">
         {word.split("").map((letter, index) => (
             <span style={{borderBottom: "10px solid black"}} key={index}>
