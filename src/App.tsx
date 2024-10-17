@@ -7,12 +7,15 @@ import HangmanWord from './HangmanWord';
 
 function App() {
   const [word, setWord] = useState(words[Math.floor(Math.random() * words.length)]);
-  // console.log(word)
-  const [guessLetters, setGuessedLetters] = useState<string[]>([]);
+  console.log(word)
+  const [guessedLetters, setGuessedLetters] = useState<string[]>([]);
+
+  const incorrectLetter: string[] = guessedLetters.filter(letter => !word.includes(letter))
+
   return (<>
     <div className='mainDisplay'>
-      <HangmanDrawing />
-      <HangmanWord />
+      <HangmanDrawing numberOfGuesses={incorrectLetter.length}/>
+      <HangmanWord word ={word} guessedLetters={guessedLetters}/>
       <Letters />
     </div>
     
