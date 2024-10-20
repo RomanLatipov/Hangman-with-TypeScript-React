@@ -23,7 +23,7 @@ function App() {
       const key = event.key;
       if (!key.match(/^[a-z]$/)) return;
 
-      event.preventDefault()
+      event.preventDefault();
       // addGuessedLetter(key)
 
       if (guessedLetters.includes(key)) return;
