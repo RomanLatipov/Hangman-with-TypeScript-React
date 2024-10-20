@@ -12,11 +12,11 @@ function App() {
 
   const incorrectLetter: string[] = guessedLetters.filter(letter => !word.includes(letter))
 
-  // const addGuessedLetter = useCallback((letter: string) => {
-  //   if (guessedLetters.includes(letter)) return;
+  const addGuessedLetter = useCallback((letter: string) => {
+    if (guessedLetters.includes(letter)) return;
     
-  //   setGuessedLetters(currentLetters => [...currentLetters, letter])
-  // },[guessedLetters])
+    setGuessedLetters(currentLetters => [...currentLetters, letter])
+  },[guessedLetters])
 
   useEffect(() => {
     const handleTpying = (event: KeyboardEvent) => {
@@ -24,11 +24,7 @@ function App() {
       if (!key.match(/^[a-z]$/)) return;
 
       event.preventDefault();
-      // addGuessedLetter(key)
-
-      if (guessedLetters.includes(key)) return;
-    
-      setGuessedLetters(currentLetters => [...currentLetters, key])
+      addGuessedLetter(key)
     }
 
     window.addEventListener("keypress", handleTpying)
@@ -39,8 +35,8 @@ function App() {
   return (<>
     <div className='mainDisplay'>
       <HangmanDrawing numberOfGuesses={incorrectLetter.length}/>
-      <HangmanWord word ={word} guessedLetters={guessedLetters}/>
-      <Letters />
+      <HangmanWord word={word} guessedLetters={guessedLetters}/>
+      <Letters activeLetters={guessedLetters.filter(letter => word.includes(letter))} inactiveLetters={incorrectLetter} addGuessedLetter={addGuessedLetter}/>
     </div>
     
   </>)
