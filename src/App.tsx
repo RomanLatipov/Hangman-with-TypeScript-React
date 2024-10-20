@@ -12,28 +12,28 @@ function App() {
 
   const incorrectLetter: string[] = guessedLetters.filter(letter => !word.includes(letter))
 
-  const addLetters = useCallback((letter: string) => {
-      if (guessedLetters.includes(letter)) {
-        console.log("yes")
-        return;
-      }
-
-      setGuessedLetters(currentLetters => [...currentLetters, letter])
-    }, [guessedLetters])
+  // const addGuessedLetter = useCallback((letter: string) => {
+  //   if (guessedLetters.includes(letter)) return;
+    
+  //   setGuessedLetters(currentLetters => [...currentLetters, letter])
+  // },[guessedLetters])
 
   useEffect(() => {
-    function handleTpying(event: KeyboardEvent) {
+    const handleTpying = (event: KeyboardEvent) => {
       const key = event.key;
+      if (!key.match(/^[a-z]$/)) return;
 
-      if (!key.match(/^[a-z]{1}$/)) return;
-      event.preventDefault();
+      event.preventDefault()
+      // addGuessedLetter(key)
 
-      addLetters(key)
-    }
+      if (guessedLetters.includes(key)) return;
     
-    window.addEventListener("keypress", handleTpying);
+      setGuessedLetters(currentLetters => [...currentLetters, key])
+    }
 
-    return () => window.removeEventListener('keydown', handleTpying);
+    window.addEventListener("keypress", handleTpying)
+
+    return () => window.removeEventListener("keypress", handleTpying)
   }, [guessedLetters])
 
   return (<>

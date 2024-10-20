@@ -12,7 +12,6 @@ export default function HangmanDrawing({numberOfGuesses}: HangmanDrawingProps) {
                     <div className='leftArm'></div>,
                     <div className='rightLeg'></div>,
                     <div className='leftLeg'></div>];
-    console.log(numberOfGuesses)
     return(<>
         <div style={{ position: "relative" }}>
             <div className='bar1'></div>
